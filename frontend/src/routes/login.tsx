@@ -1,7 +1,7 @@
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons"
 import {
   Button,
-  Center,
+  // Center,
   Container,
   FormControl,
   FormErrorMessage,
@@ -12,6 +12,7 @@ import {
   InputRightElement,
   Link,
   useBoolean,
+  Flex,
 } from "@chakra-ui/react"
 import {
   Link as RouterLink,
@@ -122,14 +123,20 @@ function Login() {
           </InputGroup>
           {error && <FormErrorMessage>{error}</FormErrorMessage>}
         </FormControl>
-        <Center>
-          <Link as={RouterLink} to="/recover-password" color="blue.500">
-            Forgot password?
-          </Link>
-        </Center>
+        
+        <Flex justify="space-between">
+      <Link as={RouterLink} to="/recover-password" color="blue.500">
+        Forgot password?
+      </Link>
+      <Link as={RouterLink} to="/register" color="blue.500">
+        Register
+      </Link>
+    </Flex>
+        
         <Button variant="primary" type="submit" isLoading={isSubmitting}>
           Log In
         </Button>
+        
       </Container>
     </>
   )
