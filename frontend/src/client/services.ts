@@ -522,3 +522,22 @@ id,
 	}
 
 }
+
+export class SoilService {
+	public static getSoilList(data: TDataReadItems = {}): CancelablePromise<ItemsPublic> {
+		const {
+limit = 100,
+skip = 0,
+} = data;
+		return __request(OpenAPI, {
+			method: 'GET',
+			url: '/api/v1/soil/',
+			query: {
+				skip, limit
+			},
+			errors: {
+				422: `Validation Error`,
+			},
+		});
+	}
+}

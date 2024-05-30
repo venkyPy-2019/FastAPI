@@ -19,6 +19,7 @@ import { Route as LayoutImport } from './routes/_layout'
 import { Route as LayoutIndexImport } from './routes/_layout/index'
 import { Route as LayoutSettingsImport } from './routes/_layout/settings'
 import { Route as LayoutItemsImport } from './routes/_layout/items'
+import { Route as LayoutSoilImport } from './routes/_layout/soil'
 import { Route as LayoutAdminImport } from './routes/_layout/admin'
 
 // Create/Update Routes
@@ -63,6 +64,11 @@ const LayoutItemsRoute = LayoutItemsImport.update({
   getParentRoute: () => LayoutRoute,
 } as any)
 
+const LayoutSoilImport = LayoutSoilImport.update({
+  path: '/soil',
+  getParentRoute: () => LayoutRoute,
+} as any)
+
 const LayoutAdminRoute = LayoutAdminImport.update({
   path: '/admin',
   getParentRoute: () => LayoutRoute,
@@ -80,12 +86,12 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LoginImport
       parentRoute: typeof rootRoute
     }
-    '/register': {
-      preLoaderRoute: typeof RegisterImport
-      parentRoute: typeof rootRoute
-    }
     '/recover-password': {
       preLoaderRoute: typeof RecoverPasswordImport
+      parentRoute: typeof rootRoute
+    }
+    '/register': {
+      preLoaderRoute: typeof RegisterImport
       parentRoute: typeof rootRoute
     }
     '/reset-password': {
@@ -98,6 +104,10 @@ declare module '@tanstack/react-router' {
     }
     '/_layout/items': {
       preLoaderRoute: typeof LayoutItemsImport
+      parentRoute: typeof LayoutImport
+    }
+    '/_layout/soil': {
+      preLoaderRoute: typeof LayoutSoilImport
       parentRoute: typeof LayoutImport
     }
     '/_layout/settings': {
@@ -119,11 +129,12 @@ export const routeTree = rootRoute.addChildren([
     LayoutItemsRoute,
     LayoutSettingsRoute,
     LayoutIndexRoute,
+    LayoutSoilImport,
   ]),
   LoginRoute,
   RecoverPasswordRoute,
-  ResetPasswordRoute,
   RegisterRoute,
+  ResetPasswordRoute,
 ])
 
 /* prettier-ignore-end */
