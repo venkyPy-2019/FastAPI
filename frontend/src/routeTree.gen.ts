@@ -20,6 +20,7 @@ import { Route as LayoutIndexImport } from './routes/_layout/index'
 import { Route as LayoutSettingsImport } from './routes/_layout/settings'
 import { Route as LayoutItemsImport } from './routes/_layout/items'
 import { Route as LayoutSoilImport } from './routes/_layout/soil'
+import { Route as LayoutWeatherImport } from './routes/_layout/weather'
 import { Route as LayoutAdminImport } from './routes/_layout/admin'
 
 // Create/Update Routes
@@ -69,6 +70,11 @@ const LayoutSoilImport = LayoutSoilImport.update({
   getParentRoute: () => LayoutRoute,
 } as any)
 
+const LayoutWeatherImport = LayoutWeatherImport.update({
+  path: '/weather',
+  getParentRoute: () => LayoutRoute,
+} as any)
+
 const LayoutAdminRoute = LayoutAdminImport.update({
   path: '/admin',
   getParentRoute: () => LayoutRoute,
@@ -110,6 +116,10 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LayoutSoilImport
       parentRoute: typeof LayoutImport
     }
+    '/_layout/weather': {
+      preLoaderRoute: typeof LayoutWeatherImport
+      parentRoute: typeof LayoutImport
+    }
     '/_layout/settings': {
       preLoaderRoute: typeof LayoutSettingsImport
       parentRoute: typeof LayoutImport
@@ -130,6 +140,7 @@ export const routeTree = rootRoute.addChildren([
     LayoutSettingsRoute,
     LayoutIndexRoute,
     LayoutSoilImport,
+    LayoutWeatherImport,
   ]),
   LoginRoute,
   RecoverPasswordRoute,
